@@ -1,2 +1,0 @@
-# Appathon-Submission
-placeholder
