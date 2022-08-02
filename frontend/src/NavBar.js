@@ -1,3 +1,4 @@
+import React from "react";
 
 export const NavBar = () => {
     return <nav class="navbar navbar-expand-lg bg-light">
