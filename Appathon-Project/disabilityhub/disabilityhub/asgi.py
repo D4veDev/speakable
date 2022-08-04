@@ -11,7 +11,7 @@ import os
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
-import chatapi.routing
+import frontend.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'disabilityhub.settings')
 
@@ -19,7 +19,7 @@ application = ProtocolTypeRouter({
   "http": get_asgi_application(),
   "websocket": AuthMiddlewareStack(
     URLRouter(
-      chatapi.routing.websocket_urlpatterns
+      frontend.routing.websocket_urlpatterns
     )
   )
 })
