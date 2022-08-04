@@ -1,2 +1,2 @@
 ### Idea
-A social hub for people with mental disorders like asperger/autism or ADHD
+A social hub for people with mental disorders like asperger/autism or ADHD.
