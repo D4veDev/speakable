@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useParams} from 'react-router-dom';
+import { Home } from "./Home";
+
 
 export const App = () => {
     return (
-      <div>
-        <h1>This is the App.js</h1>
-      </div>
+        <Router>
+            <Routes>
+                <Route path='/' element={<Home/>} />
+            </Routes>      
+         
+        </Router>
     );
-}
+  }
