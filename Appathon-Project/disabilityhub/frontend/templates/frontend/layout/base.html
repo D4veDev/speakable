@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}">
+    
+    <title>Document</title>
+</head>
+<body class="container mt-5">
+    <nav class mb-3>
+        {% if user.is_authenticated %}
+            <form action="{% url 'accounts:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary btn-sm">Logout</button>
+                
+            </form>
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-sm">Login</a>
+        {% endif %}
+    </nav>
+    {% block content %}
+    
+    {% endblock content %}
+</body>
+</html>
