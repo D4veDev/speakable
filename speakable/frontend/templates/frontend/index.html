@@ -23,10 +23,6 @@
                                 <div class="control"><input class="input" type="text" placeholder="Room name"
                                         id="room-name-input"></div>
                             </div>
-                            <div class="field"><label>Username</label>
-                                <div class="control"><input class="input" type="text" placeholder="Username"
-                                        id="username-input"></div>
-                            </div>
                             <div class="field">
                                 <div class="control"><a class="button is-info" id="room-name-submit">Submit</a></div>
                             </div>
@@ -37,3 +33,24 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block JavaScript %}
+<script>
+    // Automatically set the focus to the room name input
+    document.querySelector('#room-name-input').focus();
+    
+    // If you hit "enter" on the keyboard, trigger the click method
+    document.querySelector("#room-name-input").onkeypress = function (e) {
+        console.log("keycode:" + e.keyCode);
+        if (e.keyCode === 13) {
+            document.querySelector("#room-name-submit").click();
+        }
+    };
+    
+    // When you submit the form, redirect the user to the room page
+    document.querySelector("#room-name-submit").onclick = function (e) {
+        var roomName = document.querySelector("#room-name-input").value;
+        window.location.replace(`room/{roomName}`);
+    };
+</script>
+{% endblock JavaScript %}
