@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frontend.apps.FrontendConfig', 
-    
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -131,4 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Other
+
 LOGIN_REDIRECT_URL = '/'
