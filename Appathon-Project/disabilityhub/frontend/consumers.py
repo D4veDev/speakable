@@ -2,8 +2,11 @@ import json
 
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
-
+import detectlanguage
+import requests
 from .models import Message
+
+detectlanguage.configuration.api_key = "cd27306754d4dbec8bf30e6e4236cf24"
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -31,6 +34,28 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = data['message']
         username = data['username']
         room = data['room']
+        language = detectlanguage.simple_detect(message)
+
+        # Copilot, how many years will it take for me to get a girlfriend
+        # Answer: 
+
+        data = {
+            'text': message,
+            'mode': 'standard',
+            'lang': language,
+            'opt_countries': 'us,gb,fr',
+            'api_user': '831118967',
+            'api_secret': 'XGiBggqNDs29e7wsMuCy'
+        }
+        
+        r = requests.post('https://api.sightengine.com/1.0/text/check.json', data=data)
+
+        output = json.loads(r.text)
+
+        # Check if the output conatins a match at any of the fields
+        if output["profanity"]["matches"]: message = "This message contains profanity"
+        #if output["personal"]["matches"]: message = "This message contains personal information"
+        #if output["link"]["matches"]: message = "This message contains a link"
 
         await self.save_message(username, room, message)
 
