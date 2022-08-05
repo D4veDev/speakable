@@ -64,11 +64,7 @@ img {
 .avatar {
 	transform: translatey(0px);
 	animation: float 6s ease-in-out infinite;
-
-	img {
-		width: 100%;
-		height: auto;
-	}
+	height: auto;
 }
 
 .content {
