@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'disabilityhub.urls'
+ROOT_URLCONF = 'speakable.urls'
 
 TEMPLATES = [
     {
@@ -70,8 +70,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'disabilityhub.wsgi.application'
-ASGI_APPLICATION = "disabilityhub.asgi.application"
+WSGI_APPLICATION = 'speakable.wsgi.application'
+ASGI_APPLICATION = "speakable.asgi.application"
 
 CHANNEL_LAYERS = {
     'default': {
