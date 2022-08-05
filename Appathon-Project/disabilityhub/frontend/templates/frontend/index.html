@@ -1,21 +1,39 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Chatty</title>
-        <!-- Include Bulma CSS framework -->
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
-        />
-    </head>
+{% extends './layout/base.html' %}
 
-    <body>
-        <div id="main">
-            <div id="root"></div>
+{% block title %}
+    <title>speakable</title>
+{% endblock title %}
+
+{% block content %}
+    <div id="main">
+        <div id="root">
+            <section class="section">
+                <div class="container">
+                    <div class="columns is-multiline">
+                        <div class="column is-6 is-offset-3 mb-6">
+                            <section class="hero is-primary">
+                                <div class="hero-body">
+                                    <p class="title">speakable</p>
+                                    <p class="subtitle">A Hub for all those, who can't speak otherwise</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="column is-4 is-offset-4">
+                            <div class="field"><label>Room name</label>
+                                <div class="control"><input class="input" type="text" placeholder="Room name"
+                                        id="room-name-input"></div>
+                            </div>
+                            <div class="field"><label>Username</label>
+                                <div class="control"><input class="input" type="text" placeholder="Username"
+                                        id="username-input"></div>
+                            </div>
+                            <div class="field">
+                                <div class="control"><a class="button is-info" id="room-name-submit">Submit</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <script src="{% static 'frontend/main.js' %}"></script>
-    </body>
-</html>
+    </div>
+{% endblock content %}
