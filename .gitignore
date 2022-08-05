@@ -242,6 +242,9 @@ ENV/
 
 
 ### ! Custom
+# vscode's project settings and cache
 .vscode/
+# user specific settings, tasks, automation scripts, etc.
 .usr/
-
+# old, unused files
+.graveyard
