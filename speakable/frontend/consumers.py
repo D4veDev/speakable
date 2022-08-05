@@ -35,10 +35,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         username = data['username']
         room = data['room']
         language = detectlanguage.simple_detect(message)
-
-        # Copilot, how many years will it take for me to get a girlfriend
-        # Answer: 
-
         data = {
             'text': message,
             'mode': 'standard',
@@ -47,16 +43,19 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'api_user': '831118967',
             'api_secret': 'XGiBggqNDs29e7wsMuCy'
         }
-        
-        r = requests.post('https://api.sightengine.com/1.0/text/check.json', data=data)
 
-        output = json.loads(r.text)
+        # if message language is supported by sightengine
+        if language in ('en', 'zh', 'nl', 'de', 'it', 'pt', 'es', 'sv', 'tl'):
+            # ask sightengine, what it thinks about the message
+            r = requests.post('https://api.sightengine.com/1.0/text/check.json', data=data)
+            output = json.loads(r.text)
+            
+            # censor the message, if it contains inappropriate content
+            if output["profanity"]["matches"]: message = "This message contains profanity"
+            # if output["personal"]["matches"]: message = "This message contains personal information"
+            # if output["link"]["matches"]: message = "This message contains a link"
 
-        # Check if the output conatins a match at any of the fields
-        if output["profanity"]["matches"]: message = "This message contains profanity"
-        #if output["personal"]["matches"]: message = "This message contains personal information"
-        #if output["link"]["matches"]: message = "This message contains a link"
-
+        # save message to database
         await self.save_message(username, room, message)
 
         # Send message to room group
