@@ -1,125 +1,125 @@
 {% extends './layout/base.html' %}
 
 {% block title %}
-    <title>{{ room_name }}</title>
+<title>{{ room_name }}</title>
 {% endblock title %}
 
 {% block content %}
-    <div id="main">
-        <div id="app"></div>
-    </div>
-    <section class="section">
-        <div class="container">
-            <div class="columns is-multiline">
-                <div class="column is-6 is-offset-3 mb-6">
-                    <section class="hero">
-                        <div class="hero-body">
-                            <p class="title">{{ room_name }}</p>
-                            <p class="subtitle">
-                            </p>
-                        </div>
-                    </section>
+<div id="main">
+    <div id="app"></div>
+</div>
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            <div class="column is-6 is-offset-3 mb-6">
+                <section class="hero text-center bg-dark bg-gradient text-light">
+                    <div class="hero-body">
+                        <p class="title" style="color: white">{{ room_name }}</p>
+                        <p class="subtitle">
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column is-6 is-offset-3">
+                <div class="box">
+                    <div id="chat-messages" style="max-height: 300px; overflow-y: scroll">
+                        {% for m in messages %}<b>{{ m.username }}</b>:
+                        {{ m.content }}<br />{% endfor %}
+                    </div>
                 </div>
 
-                <div class="column is-6 is-offset-3">
-                    <div class="box">
-                    <div id="chat-messages" style="max-height: 300px; overflow-y: scroll">
-                            {% for m in messages %}<b>{{ m.username }}</b>:
-                            {{ m.content }}<br />{% endfor %}
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <div class="control">
+                <div class="field">
+                    <div class="control">
                         <input class="input" type="text" placeholder="Message" id="chat-message-input" />
-                        </div>
                     </div>
+                </div>
 
-                    <div class="field">
-                        <div class="control">
+                <div class="field">
+                    <div class="control">
                         <a class="button is-info" id="chat-message-submit">Submit</a>
-                        </div>
                     </div>
+                </div>
 
                 <small class="has-text-grey-light">Your username: {{ username }}</small>
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    {{ room_name|json_script:"json-roomname" }} 
-    {{ username|json_script:"json-username" }}
+{{ room_name|json_script:"json-roomname" }}
+{{ username|json_script:"json-username" }}
 {% endblock content %}
 
 {% block JavaScript %}
-    <script>
-        function scrollToBottom() {
-            let objDiv = document.getElementById("chat-messages");
-            objDiv.scrollTop = objDiv.scrollHeight;
+<script>
+    function scrollToBottom() {
+        let objDiv = document.getElementById("chat-messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    scrollToBottom();
+
+    const roomName = JSON.parse(
+        document.getElementById("json-roomname").textContent
+    );
+    const userName = JSON.parse(
+        document.getElementById("json-username").textContent
+    );
+
+    const chatSocket = new WebSocket(
+        "ws://" + window.location.host + "/ws/" + roomName + "/"
+    );
+
+    chatSocket.onmessage = function (e) {
+        console.log("onmessage");
+
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            document.querySelector("#chat-messages").innerHTML +=
+                "<b>" +
+                data.username +
+                "</b>: " +
+                data.message +
+                "<br>";
+        } else {
+            alert("The message is empty!");
         }
 
         scrollToBottom();
+    };
 
-        const roomName = JSON.parse(
-            document.getElementById("json-roomname").textContent
+    chatSocket.onclose = function (e) {
+        console.log("The socket closed unexpectedly");
+    };
+
+    document.querySelector("#chat-message-submit").onclick = function (
+        e
+    ) {
+        const messageInputDom = document.querySelector(
+            "#chat-message-input"
         );
-        const userName = JSON.parse(
-            document.getElementById("json-username").textContent
+        const message = messageInputDom.value;
+
+        chatSocket.send(
+            JSON.stringify({
+                message: message,
+                username: userName,
+                room: roomName,
+            })
         );
 
-        const chatSocket = new WebSocket(
-            "ws://" + window.location.host + "/ws/" + roomName + "/"
-        );
+        messageInputDom.value = "";
+    };
 
-        chatSocket.onmessage = function (e) {
-            console.log("onmessage");
+    // If you hit "enter" while typing in the chat input, submit the message
+    document.querySelector("#chat-message-input").onkeypress = function (e) {
+        console.log("keycode:" + e.keyCode);
+        if (e.keyCode === 13) {
+            document.querySelector("#chat-message-submit").click();
+        }
+    };
 
-            const data = JSON.parse(e.data);
-
-            if (data.message) {
-                document.querySelector("#chat-messages").innerHTML +=
-                    "<b>" +
-                    data.username +
-                    "</b>: " +
-                    data.message +
-                    "<br>";
-            } else {
-                alert("The message is empty!");
-            }
-
-            scrollToBottom();
-        };
-
-        chatSocket.onclose = function (e) {
-            console.log("The socket closed unexpectedly");
-        };
-
-        document.querySelector("#chat-message-submit").onclick = function (
-            e
-        ) {
-            const messageInputDom = document.querySelector(
-                "#chat-message-input"
-            );
-            const message = messageInputDom.value;
-
-            chatSocket.send(
-                JSON.stringify({
-                    message: message,
-                    username: userName,
-                    room: roomName,
-                })
-            );
-
-            messageInputDom.value = "";
-        };
-
-        // If you hit "enter" while typing in the chat input, submit the message
-        document.querySelector("#chat-message-input").onkeypress = function (e) {
-            console.log("keycode:" + e.keyCode);
-            if (e.keyCode === 13) {
-                document.querySelector("#chat-message-submit").click();
-            }
-        };
-
-    </script>
+</script>
 {% endblock JavaScript %}
