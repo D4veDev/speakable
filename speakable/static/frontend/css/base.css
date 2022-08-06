@@ -105,3 +105,7 @@ body {
         transform: translateX(1);
     }
 }
+
+.front-layer {
+    z-index: 2;
+}
