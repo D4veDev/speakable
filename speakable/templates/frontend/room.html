@@ -128,5 +128,14 @@
 
             messageInputDom.value = "";
         };
+
+        // If you hit "enter" while typing in the chat input, submit the message
+        document.querySelector("#chat-message-input").onkeypress = function (e) {
+            console.log("keycode:" + e.keyCode);
+            if (e.keyCode === 13) {
+                document.querySelector("#chat-message-submit").click();
+            }
+        };
+
     </script>
 {% endblock JavaScript %}
