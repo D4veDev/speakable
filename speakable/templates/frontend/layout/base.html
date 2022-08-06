@@ -41,7 +41,7 @@
 
     <div class="container mt-2">
 
-        <nav class="navbar navbar-expand-lg bg-light bg-gradient text-dark rounded">
+        <nav class="navbar navbar-expand-lg bg-light bg-gradient text-dark rounded shadow-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'frontend:index' %}"><img
                         src="{% static 'frontend/img/logo.png' %}" alt="speakable" width="40vw" height="40vh"></a>
@@ -50,7 +50,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav d-lg-flex align-items-center">
                         <li class="nav-item">
                             {% if request.user.is_authenticated %}
                             <form action="{% url 'accounts:logout' %}" method="post">
@@ -62,7 +62,7 @@
                             {% endif %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'frontend:about' %}">About Us</a>
+                            <a class="btn btn-primary btn-sm ml-2" href="{% url 'frontend:about' %}">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>

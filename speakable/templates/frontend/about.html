@@ -2,37 +2,41 @@
 {% load static %}
 
 {% block title %}
-	<title>About Us</title>
+<title>About Us</title>
 {% endblock title %}
 
 {% block content %}
-	<div class="container py-4">
-		<!--Jumbotron(title)-->
-		<div class="p-5 mb-4 bg-light rounded-3">
-			<div class="container-fluid py-5">
-				<h1 class="display-5 fw-bold">speakable</h1>
-				<p class="col-md-8 fs-4">Our mission is to connect people with disabilities worldwide to show them, there's a place for everyone.</p>
-				<a class="btn btn-primary btn-lg" href="{% url 'frontend:index' %}">Connect with others</a>
-			</div>
+<div class="container py-4">
+	<!--Jumbotron(title)-->
+	<div class="p-5 mb-4 bg-light rounded-3">
+		<div class="container-fluid py-5">
+			<h1 class="display-5 fw-bold">speakable</h1>
+			<p class="col-md-8 fs-4">Our mission is to connect people with disabilities worldwide to show them, there's
+				a place for everyone.</p>
+			<a class="btn btn-primary btn-lg" href="{% url 'frontend:index' %}">Connect with others</a>
 		</div>
 	</div>
-	<div class="container col-xxl-8 px-4 py-5 front-layer">
-		<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+</div>
+<div class="container col-xxl-8 px-4 py-5 front-layer">
+	<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
 
-				<img src="{% static 'frontend/img/vibe.jpg' %}" class="mx-lg-auto img-fluid" alt="widespanning image" width="auto" height="auto"
-					loading="lazy">
+		<img src="{% static 'frontend/img/vibe.jpg' %}" class="mx-lg-auto img-fluid" alt="widespanning image"
+			width="auto" height="auto" loading="lazy">
 
-			<div class="col-lg-6 bg-light rounded-3 p-5 front-layer">
-				<h1 class="display-5 fw-bold lh-1 mb-3">Hi. We're "Teamname"</h1>
-				<p class="lead">This project originated from an
-					<a href="https://appathon.appdevleague.org">ADL Appaton</a>
-					If you'd like to contribute, visit our
-					<a href="https://github.com/D4veDev/Appathon-Submission">GitHub page</a>.</p>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-start">
-					<button type="button" class="btn btn-primary btn-lg px-4 me-md-2 front-layer">Primary</button>
-					<button type="button" class="btn btn-outline-secondary btn-lg px-4 front-layer">Default</button>
-				</div>
+		<div class="col-lg-6 bg-light rounded-3 p-5 text-center front-layer">
+			<h1 class="display-5 fw-bold lh-1 mb-3">Hi. We're Developer</h1>
+			<p class="lead">This project originated from an ADL Appathon.
+				If you'd like to contribute, visit our GitHub page.
+			</p>
+			<div class="d-grid gap-2 d-md-flex justify-content-center">
+				<button type="button" href="https://appathon.appdevleague.org"
+					class="btn btn-primary btn-lg px-4 me-md-2 front-layer">Appathon</button>
+				<button type="button" href="https://github.com/D4veDev/Appathon-Submission"
+					class="btn btn-outline-secondary btn-lg px-4 front-layer">Github</button>
 			</div>
 		</div>
+
+
 	</div>
+</div>
 {% endblock content %}

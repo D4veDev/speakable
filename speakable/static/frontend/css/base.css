@@ -25,8 +25,9 @@ body {
 }
 
 .navbar,
-.hero {
-    border: 2px solid black;
+.hero,
+.p-5 {
+    /* border: 2px solid black; */
     color: black;
     position: relative;
     z-index: 2;
@@ -40,7 +41,7 @@ body {
     display: inline-block;
     margin: 10vh 0 10vh 0;
     z-index: 2;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 @keyframes gradient {
