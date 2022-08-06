@@ -76,7 +76,7 @@
     // Automatically set the focus to the room name input
     document.querySelector('#room-name-input').focus();
 
-    // If you hit "enter" on the keyboard, trigger the click method
+    // If you hit "enter" while typing in the room input, submit the form
     document.querySelector("#room-name-input").onkeypress = function (e) {
         console.log("keycode:" + e.keyCode);
         if (e.keyCode === 13) {
