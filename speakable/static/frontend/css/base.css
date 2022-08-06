@@ -25,7 +25,8 @@ body {
 }
 
 .navbar,
-.hero {
+.hero,
+.p-5 {
     border: 2px solid black;
     color: black;
     position: relative;
