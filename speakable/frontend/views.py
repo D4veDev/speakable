@@ -16,3 +16,6 @@ def room(request, room_name):
         username = 'guest' + ''.join([str(randint(0, 9)) for i in range(8)])
 
     return render(request, 'frontend/room.html', {'room_name': room_name, 'username': username, 'messages': messages})
+
+def about(request):
+    return render(request, 'frontend/about.html')

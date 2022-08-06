@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% load static %}
-    <!-- Bulma, because Chatapp has been build with it -->
+    <!-- Bulma, because Chatapp has been built with it -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <!-- Bootstrap CSS -->
@@ -15,7 +16,7 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <!-- custom styling -->
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/css/base.css' %}">
 
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'frontend/img/logo.png' %}">
@@ -61,7 +62,7 @@
                             {% endif %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"></a>
+                            <a class="nav-link" href="{% url 'frontend:about' %}">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>
