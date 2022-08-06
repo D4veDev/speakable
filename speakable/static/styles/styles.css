@@ -24,6 +24,24 @@ body {
     margin-left: 2vw;
 }
 
+.navbar,
+.hero {
+    background-color: palegreen;
+    border: 2px solid black;
+    color: white;
+}
+
+.button {
+    text-decoration: none;
+}
+
+.card {
+    display: inline-block;
+    margin: 10vh 0 10vh 0;
+    z-index: 2;
+    border: 2px solid black;
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 0%;
