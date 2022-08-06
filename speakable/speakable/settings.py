@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-5td(&s*6gc8k9ps68y2#$ual1nev-18f^2i5_d#(^e3ff-f56i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -58,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            str(BASE_DIR / 'templates'),
+            BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -132,6 +135,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = str(BASE_DIR / 'static') + '/'
+# base static directory inside every app
+STATIC_URL = 'static/'
+
+# other dirs to search for static files in
+# (e.g. global static files)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Other
