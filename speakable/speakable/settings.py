@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-5td(&s*6gc8k9ps68y2#$ual1nev-18f^2i5_d#(^e3ff-f56i
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '0.0.0.0',
     'localhost',
     '127.0.0.1',
 ]
@@ -83,7 +84,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('127.0.0.1', 6379), ('0.0.0.0', 6379)],
         },
     },
 }
@@ -92,12 +93,25 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# Database settings for development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Database settings for production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mydb',
+#         'USER': 'root',
+#         'PASSWORD': os.environ['DB_PASS'],
+#         'HOST': os.environ['DB_HOST'],
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation

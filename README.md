@@ -1,6 +1,8 @@
 ## Idea
-A social hub for people with mental disorders like asperger/autism or ADHD.
+A social hub for people with disorders to connect those, who are in most need of company.
 
+## Origin
+This project originates  from the ADL Appathon 2022 and was originally created in a single week.
 
 ## Resources
 

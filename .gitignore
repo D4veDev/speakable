@@ -247,4 +247,4 @@ ENV/
 # user specific settings, tasks, automation scripts, etc.
 .usr/
 # old, unused files
-.graveyard
+.graveyard/
